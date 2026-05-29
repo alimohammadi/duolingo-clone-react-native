@@ -1,5 +1,130 @@
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css";
-
 @import "nativewind/theme";
+
+@theme {
+  /* ─── Brand Primary Colors ───────────────────────────
+     Usage: bg-lingua-purple, text-lingua-purple, border-lingua-purple
+  ────────────────────────────────────────────────────── */
+  --color-lingua-purple: #6C4EF5;
+  --color-lingua-deep-purple: #5B3BF6;
+  --color-lingua-blue: #4D88FF;
+  --color-lingua-green: #21C16B;
+
+  /* ─── Semantic Colors ────────────────────────────────
+     Usage: bg-success, text-error, border-warning, etc.
+  ────────────────────────────────────────────────────── */
+  --color-success: #21C16B;
+  --color-warning: #FFCB00;
+  --color-streak: #FF8A00;
+  --color-error: #FF4D4F;
+  --color-info: #4D88FF;
+
+  /* ─── Neutral Colors ─────────────────────────────────
+     Usage: text-text-primary, bg-surface, border-border-ui
+  ────────────────────────────────────────────────────── */
+  --color-text-primary: #001132;
+  --color-text-secondary: #6B7280;
+  --color-border-ui: #E5E7EB;
+  --color-surface: #F6F7FB;
+  --color-background: #FFFFFF;
+
+  /* ─── Font Families ──────────────────────────────────
+     Usage: font-poppins, font-poppins-medium, font-poppins-semibold, font-poppins-bold
+     Note: Each weight maps to a separately loaded font file in React Native.
+  ────────────────────────────────────────────────────── */
+  --font-poppins: 'Poppins-Regular';
+  --font-poppins-medium: 'Poppins-Medium';
+  --font-poppins-semibold: 'Poppins-SemiBold';
+  --font-poppins-bold: 'Poppins-Bold';
+
+  /* ─── Font Sizes ─────────────────────────────────────
+     Usage: text-h1, text-h2, text-body-md, text-caption, etc.
+  ────────────────────────────────────────────────────── */
+  --text-h1: 2rem;        /* 32px */
+  --text-h2: 1.5rem;      /* 24px */
+  --text-h3: 1.25rem;     /* 20px */
+  --text-h4: 1rem;        /* 16px */
+  --text-body-lg: 1rem;   /* 16px */
+  --text-body-md: 0.875rem;   /* 14px */
+  --text-body-sm: 0.8125rem;  /* 13px */
+  --text-caption: 0.6875rem;  /* 11px */
+}
+
+/* ─── Typography Preset Utilities (BEM) ──────────────────
+   Combine font-family + font-size + line-height in one class.
+   Usage: <Text className="type-h1"> or <Text className="type-body-md">
+   Composable with color classes: <Text className="type-h2 text-lingua-purple">
+────────────────────────────────────────────────────────── */
+@layer utilities {
+  .type-h1 {
+    font-family: 'Poppins-Bold';
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .type-h2 {
+    font-family: 'Poppins-SemiBold';
+    font-size: 24px;
+    line-height: 31px;
+  }
+
+  .type-h3 {
+    font-family: 'Poppins-SemiBold';
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .type-h4 {
+    font-family: 'Poppins-Medium';
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .type-body-lg {
+    font-family: 'Poppins-Regular';
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  .type-body-md {
+    font-family: 'Poppins-Regular';
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .type-body-sm {
+    font-family: 'Poppins-Regular';
+    font-size: 13px;
+    line-height: 21px;
+  }
+
+  .type-caption {
+    font-family: 'Poppins-Regular';
+    font-size: 11px;
+    line-height: 15px;
+  }
+
+  /* ─── Card Utility ────────────────────────────────────
+     Usage: <View className="card">
+  ────────────────────────────────────────────────────── */
+  .card {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    border-width: 1px;
+    border-color: #E5E7EB;
+    padding: 16px;
+  }
+
+  /* ─── Pill / Badge Utility ────────────────────────────
+     Usage: <View className="pill bg-lingua-purple">
+  ────────────────────────────────────────────────────── */
+  .pill {
+    border-radius: 999px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}

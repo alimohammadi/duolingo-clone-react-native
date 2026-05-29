@@ -43,6 +43,5 @@ example
 /android
 
 # Claude Code tooling
-.agents/
 .claude/
 skills-lock.json

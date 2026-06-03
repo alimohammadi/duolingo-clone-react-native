@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import {
+  ActivityIndicator,
   KeyboardAvoidingView,
   Modal,
   Platform,
@@ -10,35 +11,50 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 type Props = {
   visible: boolean;
   email: string;
   onClose: () => void;
+  onVerify: (code: string) => Promise<void>;
+  onResend: () => Promise<void>;
 };
 
-export default function VerificationModal({ visible, email, onClose }: Props) {
-  const router = useRouter();
+export default function VerificationModal({ visible, email, onClose, onVerify, onResend }: Props) {
   const [code, setCode] = useState(['', '', '', '', '', '']);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [error, setError] = useState('');
   const inputRefs = useRef<Array<TextInput | null>>(new Array(6).fill(null));
 
+  const submitCode = async (fullCode: string) => {
+    setIsVerifying(true);
+    setError('');
+    try {
+      await onVerify(fullCode);
+    } catch (err: any) {
+      setError(err.message || 'Invalid code. Please try again.');
+      setCode(['', '', '', '', '', '']);
+      setTimeout(() => inputRefs.current[0]?.focus(), 50);
+    } finally {
+      setIsVerifying(false);
+    }
+  };
+
   const handleChange = (text: string, index: number) => {
+    if (isVerifying) return;
     const digit = text.replace(/[^0-9]/g, '').slice(-1);
     const newCode = [...code];
     newCode[index] = digit;
     setCode(newCode);
+    setError('');
 
     if (digit && index < 5) {
       inputRefs.current[index + 1]?.focus();
     }
 
     if (digit && newCode.every((d) => d !== '')) {
-      setTimeout(() => {
-        onClose();
-        router.replace('/');
-      }, 300);
+      submitCode(newCode.join(''));
     }
   };
 
@@ -53,7 +69,15 @@ export default function VerificationModal({ visible, email, onClose }: Props) {
 
   const handleClose = () => {
     setCode(['', '', '', '', '', '']);
+    setError('');
     onClose();
+  };
+
+  const handleResend = async () => {
+    setError('');
+    setCode(['', '', '', '', '', '']);
+    await onResend();
+    setTimeout(() => inputRefs.current[0]?.focus(), 100);
   };
 
   return (
@@ -63,7 +87,7 @@ export default function VerificationModal({ visible, email, onClose }: Props) {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <View style={styles.overlay}>
-          <Pressable style={StyleSheet.absoluteFillObject} onPress={handleClose} />
+          <Pressable style={StyleSheet.absoluteFill} onPress={handleClose} />
 
           <View style={styles.card}>
             {/* Close button */}
@@ -94,7 +118,7 @@ export default function VerificationModal({ visible, email, onClose }: Props) {
                 <TextInput
                   key={i}
                   ref={(ref) => { inputRefs.current[i] = ref; }}
-                  style={[styles.codeBox, digit ? styles.codeBoxFilled : null]}
+                  style={[styles.codeBox, digit ? styles.codeBoxFilled : null, error ? styles.codeBoxError : null]}
                   value={digit}
                   onChangeText={(text) => handleChange(text, i)}
                   onKeyPress={({ nativeEvent }) => handleKeyPress(nativeEvent.key, i)}
@@ -102,12 +126,25 @@ export default function VerificationModal({ visible, email, onClose }: Props) {
                   maxLength={1}
                   textContentType="oneTimeCode"
                   selectTextOnFocus
+                  editable={!isVerifying}
                 />
               ))}
             </View>
 
+            {/* Error message */}
+            {error ? (
+              <Text className="type-body-sm text-center mt-3" style={styles.errorText}>
+                {error}
+              </Text>
+            ) : null}
+
+            {/* Loading indicator */}
+            {isVerifying && (
+              <ActivityIndicator size="small" color="#6C4EF5" style={{ marginTop: 12 }} />
+            )}
+
             {/* Resend */}
-            <TouchableOpacity activeOpacity={0.7} className="mt-5 mb-2">
+            <TouchableOpacity activeOpacity={0.7} className="mt-5 mb-2" onPress={handleResend} disabled={isVerifying}>
               <Text className="type-body-sm text-text-secondary text-center">
                 Didn't receive it?{' '}
                 <Text style={styles.resendText}>Resend code</Text>
@@ -172,6 +209,14 @@ const styles = StyleSheet.create({
   codeBoxFilled: {
     borderColor: '#6C4EF5',
     backgroundColor: '#EEE9FE',
+  },
+  codeBoxError: {
+    borderColor: '#EF4444',
+    backgroundColor: '#FEF2F2',
+  },
+  errorText: {
+    color: '#EF4444',
+    fontSize: 13,
   },
   resendText: {
     fontFamily: 'Poppins-SemiBold',

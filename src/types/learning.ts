@@ -6,6 +6,7 @@ export interface Language {
   nativeName: string;
   flag: string;
   description: string;
+  learnerCount?: string;
 }
 
 export type ActivityType =

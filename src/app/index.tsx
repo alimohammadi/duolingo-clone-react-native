@@ -1,5 +1,5 @@
 import { useAuth, useClerk, useUser } from "@clerk/expo";
-import { Redirect, Stack } from "expo-router";
+import { Redirect, Stack, router } from "expo-router";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -33,6 +33,14 @@ export default function Index() {
         </Text>
 
         <TouchableOpacity
+          style={styles.primaryButton}
+          onPress={() => router.push('/language-selection')}
+          activeOpacity={0.85}
+        >
+          <Text style={styles.primaryButtonText}>Choose Language</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
           style={styles.logoutButton}
           onPress={() => signOut()}
           activeOpacity={0.85}
@@ -49,8 +57,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
   },
-  logoutButton: {
+  primaryButton: {
     backgroundColor: "#6C4EF5",
+    paddingHorizontal: 40,
+    paddingVertical: 16,
+    borderRadius: 20,
+    alignItems: "center",
+    minWidth: 200,
+  },
+  primaryButtonText: {
+    fontFamily: "Poppins-SemiBold",
+    fontSize: 16,
+    color: "#FFFFFF",
+  },
+  logoutButton: {
+    backgroundColor: "#F6F7FB",
     paddingHorizontal: 40,
     paddingVertical: 16,
     borderRadius: 20,
@@ -60,6 +81,6 @@ const styles = StyleSheet.create({
   logoutText: {
     fontFamily: "Poppins-SemiBold",
     fontSize: 16,
-    color: "#FFFFFF",
+    color: "#6B7280",
   },
 });

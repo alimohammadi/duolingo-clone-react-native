@@ -13,14 +13,23 @@ import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { languages } from '@/data/languages';
 import { images } from '@/constants/images';
+import { useLanguageStore } from '@/store/languageStore';
 
 export default function LanguageSelection() {
   const [search, setSearch] = useState('');
-  const [selected, setSelected] = useState<string | null>(null);
+  const { selectedLanguage, setSelectedLanguage } = useLanguageStore();
+  const [selected, setSelected] = useState<string | null>(selectedLanguage?.code ?? null);
 
   const filtered = languages.filter((lang) =>
     lang.name.toLowerCase().includes(search.toLowerCase())
   );
+
+  function handleConfirm() {
+    const lang = languages.find((l) => l.code === selected);
+    if (!lang) return;
+    setSelectedLanguage(lang);
+    router.replace('/');
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -101,7 +110,7 @@ export default function LanguageSelection() {
                 : 'bg-white border-border-ui'
             }`}
             disabled={!selected}
-            onPress={() => router.back()}
+            onPress={handleConfirm}
             activeOpacity={0.85}
           >
             <Ionicons

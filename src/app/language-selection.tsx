@@ -14,11 +14,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { languages } from '@/data/languages';
 import { images } from '@/constants/images';
 import { useLanguageStore } from '@/store/languageStore';
+import { usePostHog } from 'posthog-react-native';
 
 export default function LanguageSelection() {
   const [search, setSearch] = useState('');
   const { selectedLanguage, setSelectedLanguage } = useLanguageStore();
   const [selected, setSelected] = useState<string | null>(selectedLanguage?.code ?? null);
+  const posthog = usePostHog();
 
   const filtered = languages.filter((lang) =>
     lang.name.toLowerCase().includes(search.toLowerCase())
@@ -28,6 +30,10 @@ export default function LanguageSelection() {
     const lang = languages.find((l) => l.code === selected);
     if (!lang) return;
     setSelectedLanguage(lang);
+    posthog.capture('language_selected', {
+      language_code: lang.code,
+      language_name: lang.name,
+    });
     router.replace('/');
   }
 

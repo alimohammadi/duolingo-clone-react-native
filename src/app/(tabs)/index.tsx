@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useLanguageStore } from '@/store/languageStore';
 import { getUnitsByLanguage } from '@/data/units';
 import { images } from '@/constants/images';
+import { usePostHog } from 'posthog-react-native';
 
 const DAILY_XP = 15;
 const DAILY_GOAL = 20;
@@ -51,6 +52,7 @@ const TODAY_PLAN = [
 export default function HomeScreen() {
   const { user } = useUser();
   const { selectedLanguage } = useLanguageStore();
+  const posthog = usePostHog();
 
   const units = selectedLanguage ? getUnitsByLanguage(selectedLanguage.code) : [];
   const currentUnit = units[0] ?? null;
@@ -124,6 +126,10 @@ export default function HomeScreen() {
                 <TouchableOpacity
                   className="bg-white rounded-xl py-[9px] px-[22px] self-start"
                   activeOpacity={0.85}
+                  onPress={() => posthog.capture('continue_learning_tapped', {
+                    language_code: selectedLanguage?.code,
+                    unit_order: currentUnit?.order,
+                  })}
                 >
                   <Text className="font-poppins-semibold text-body-md text-lingua-purple">Continue</Text>
                 </TouchableOpacity>

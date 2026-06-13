@@ -636,6 +636,383 @@ export const lessons: Lesson[] = [
       },
     ],
   },
+
+  // ─── GERMAN · Unit 2 · Lesson 1 ──────────────────────────────────────────
+  {
+    id: 'de-u2-l1',
+    unitId: 'de-unit-2',
+    order: 1,
+    title: 'Zahlen 1–10',
+    description: 'Count from one to ten in German.',
+    xpReward: 10,
+    goal: 'Count from 1 to 10 in German and use numbers in simple sentences.',
+    aiTeacherPrompt:
+      'You are an enthusiastic German teacher. Teach numbers ein through zehn rhythmically. Practice counting objects together and ask "Wie viele?" (How many?) to reinforce learning.',
+    vocabulary: [
+      { word: 'ein', translation: 'one', phonetic: 'ayn' },
+      { word: 'zwei', translation: 'two', phonetic: 'tsvay' },
+      { word: 'drei', translation: 'three', phonetic: 'dry' },
+      { word: 'vier', translation: 'four', phonetic: 'feer' },
+      { word: 'fünf', translation: 'five', phonetic: 'fuenf' },
+      { word: 'sechs', translation: 'six', phonetic: 'zeks' },
+      { word: 'sieben', translation: 'seven', phonetic: 'ZEE-ben' },
+      { word: 'acht', translation: 'eight', phonetic: 'akht' },
+      { word: 'neun', translation: 'nine', phonetic: 'noyn' },
+      { word: 'zehn', translation: 'ten', phonetic: 'tsayn' },
+    ],
+    phrases: [
+      { phrase: 'Ich habe drei Bücher.', translation: 'I have three books.' },
+      { phrase: 'Wie viele sind das?', translation: 'How many are there?' },
+    ],
+    activities: [
+      {
+        id: 'de-u2-l1-a1',
+        type: 'multiple_choice',
+        question: 'What is "fünf" in English?',
+        options: ['three', 'four', 'five', 'six'],
+        answer: 'five',
+      },
+      {
+        id: 'de-u2-l1-a2',
+        type: 'translate',
+        question: 'Translate: "eight"',
+        answer: 'acht',
+      },
+    ],
+  },
+
+  // ─── GERMAN · Unit 2 · Lesson 2 ──────────────────────────────────────────
+  {
+    id: 'de-u2-l2',
+    unitId: 'de-unit-2',
+    order: 2,
+    title: 'Farben',
+    description: 'Learn colors in German.',
+    xpReward: 15,
+    goal: 'Name common colors and use them to describe objects in German.',
+    aiTeacherPrompt:
+      'You are a creative German teacher. Teach colors: rot, blau, grün, gelb, weiß, schwarz. Note that German adjectives change form based on noun gender. Ask the student to describe objects around them.',
+    vocabulary: [
+      { word: 'rot', translation: 'red' },
+      { word: 'blau', translation: 'blue' },
+      { word: 'grün', translation: 'green' },
+      { word: 'gelb', translation: 'yellow' },
+      { word: 'weiß', translation: 'white' },
+      { word: 'schwarz', translation: 'black' },
+      { word: 'orange', translation: 'orange' },
+    ],
+    phrases: [
+      { phrase: 'Der Himmel ist blau.', translation: 'The sky is blue.' },
+      { phrase: 'Mein Auto ist rot.', translation: 'My car is red.' },
+    ],
+    activities: [
+      {
+        id: 'de-u2-l2-a1',
+        type: 'multiple_choice',
+        question: 'What color is "gelb"?',
+        options: ['red', 'green', 'yellow', 'blue'],
+        answer: 'yellow',
+      },
+      {
+        id: 'de-u2-l2-a2',
+        type: 'translate',
+        question: 'Translate: "black" in German',
+        answer: 'schwarz',
+      },
+    ],
+  },
+
+  // ─── GERMAN · Unit 2 · Lesson 3 ──────────────────────────────────────────
+  {
+    id: 'de-u2-l3',
+    unitId: 'de-unit-2',
+    order: 3,
+    title: 'Wochentage',
+    description: 'Learn the days of the week in German.',
+    xpReward: 15,
+    goal: 'Name all seven days of the week and use them in sentences.',
+    aiTeacherPrompt:
+      'You are a helpful German teacher. Teach the days of the week: Montag through Sonntag. Explain that German days are all masculine (der). Practice by asking what day it is and what the student does on each day.',
+    vocabulary: [
+      { word: 'Montag', translation: 'Monday', phonetic: 'MON-tahk' },
+      { word: 'Dienstag', translation: 'Tuesday', phonetic: 'DEENS-tahk' },
+      { word: 'Mittwoch', translation: 'Wednesday', phonetic: 'MIT-vokh' },
+      { word: 'Donnerstag', translation: 'Thursday', phonetic: 'DON-ers-tahk' },
+      { word: 'Freitag', translation: 'Friday', phonetic: 'FRY-tahk' },
+      { word: 'Samstag', translation: 'Saturday', phonetic: 'ZAHMS-tahk' },
+      { word: 'Sonntag', translation: 'Sunday', phonetic: 'ZON-tahk' },
+    ],
+    phrases: [
+      { phrase: 'Heute ist Montag.', translation: 'Today is Monday.' },
+      { phrase: 'Welcher Tag ist heute?', translation: 'What day is today?' },
+    ],
+    activities: [
+      {
+        id: 'de-u2-l3-a1',
+        type: 'multiple_choice',
+        question: 'What day is "Freitag"?',
+        options: ['Thursday', 'Friday', 'Saturday', 'Sunday'],
+        answer: 'Friday',
+      },
+      {
+        id: 'de-u2-l3-a2',
+        type: 'translate',
+        question: 'Translate: "Wednesday" in German',
+        answer: 'Mittwoch',
+      },
+    ],
+  },
+
+  // ─── JAPANESE · Unit 2 · Lesson 1 ────────────────────────────────────────
+  {
+    id: 'ja-u2-l1',
+    unitId: 'ja-unit-2',
+    order: 1,
+    title: '数字 1〜10',
+    description: 'Count from one to ten in Japanese.',
+    xpReward: 10,
+    goal: 'Count from 1 to 10 in Japanese and recognize numbers in context.',
+    aiTeacherPrompt:
+      'You are an upbeat Japanese teacher. Teach ichi through juu with rhythm. Count everyday objects and ask "いくつ？" (How many?) to reinforce the lesson. Use both hiragana and romaji.',
+    vocabulary: [
+      { word: '一 (いち)', translation: 'one', phonetic: 'ichi' },
+      { word: '二 (に)', translation: 'two', phonetic: 'ni' },
+      { word: '三 (さん)', translation: 'three', phonetic: 'san' },
+      { word: '四 (し/よん)', translation: 'four', phonetic: 'shi / yon' },
+      { word: '五 (ご)', translation: 'five', phonetic: 'go' },
+      { word: '六 (ろく)', translation: 'six', phonetic: 'roku' },
+      { word: '七 (しち/なな)', translation: 'seven', phonetic: 'shichi / nana' },
+      { word: '八 (はち)', translation: 'eight', phonetic: 'hachi' },
+      { word: '九 (く/きゅう)', translation: 'nine', phonetic: 'ku / kyuu' },
+      { word: '十 (じゅう)', translation: 'ten', phonetic: 'juu' },
+    ],
+    phrases: [
+      { phrase: 'りんごが五つあります。', translation: 'There are five apples.', phonetic: 'ringo ga itsutsu arimasu.' },
+      { phrase: 'いくつですか？', translation: 'How many is it?', phonetic: 'ikutsu desu ka?' },
+    ],
+    activities: [
+      {
+        id: 'ja-u2-l1-a1',
+        type: 'multiple_choice',
+        question: 'What is "さん" in English?',
+        options: ['one', 'two', 'three', 'four'],
+        answer: 'three',
+      },
+      {
+        id: 'ja-u2-l1-a2',
+        type: 'translate',
+        question: 'Translate: "seven" in Japanese (romaji)',
+        answer: 'nana',
+      },
+    ],
+  },
+
+  // ─── JAPANESE · Unit 2 · Lesson 2 ────────────────────────────────────────
+  {
+    id: 'ja-u2-l2',
+    unitId: 'ja-unit-2',
+    order: 2,
+    title: '色',
+    description: 'Learn color words in Japanese.',
+    xpReward: 15,
+    goal: 'Name common colors and describe objects using colors in Japanese.',
+    aiTeacherPrompt:
+      'You are a creative Japanese teacher. Teach colors: あか (red), あお (blue), みどり (green), きいろ (yellow), しろ (white), くろ (black). Explain that some colors act as nouns and use の before a noun. Ask the student to describe things around them.',
+    vocabulary: [
+      { word: '赤 (あか)', translation: 'red', phonetic: 'aka' },
+      { word: '青 (あお)', translation: 'blue', phonetic: 'ao' },
+      { word: '緑 (みどり)', translation: 'green', phonetic: 'midori' },
+      { word: '黄色 (きいろ)', translation: 'yellow', phonetic: 'kiiro' },
+      { word: '白 (しろ)', translation: 'white', phonetic: 'shiro' },
+      { word: '黒 (くろ)', translation: 'black', phonetic: 'kuro' },
+    ],
+    phrases: [
+      { phrase: 'そらはあおいです。', translation: 'The sky is blue.', phonetic: 'sora wa aoi desu.' },
+      { phrase: 'あかいくるまです。', translation: 'It is a red car.', phonetic: 'akai kuruma desu.' },
+    ],
+    activities: [
+      {
+        id: 'ja-u2-l2-a1',
+        type: 'multiple_choice',
+        question: 'What color is "きいろ"?',
+        options: ['red', 'green', 'yellow', 'blue'],
+        answer: 'yellow',
+      },
+      {
+        id: 'ja-u2-l2-a2',
+        type: 'translate',
+        question: 'Translate: "black" in Japanese (romaji)',
+        answer: 'kuro',
+      },
+    ],
+  },
+
+  // ─── JAPANESE · Unit 2 · Lesson 3 ────────────────────────────────────────
+  {
+    id: 'ja-u2-l3',
+    unitId: 'ja-unit-2',
+    order: 3,
+    title: '曜日',
+    description: 'Learn the days of the week in Japanese.',
+    xpReward: 15,
+    goal: 'Name all seven days of the week and say what day it is today.',
+    aiTeacherPrompt:
+      'You are a helpful Japanese teacher. Teach the days of the week: 月曜日 through 日曜日. Explain that each day name comes from a natural element (moon, fire, water, wood, gold, soil, sun). Practice asking 今日は何曜日ですか？',
+    vocabulary: [
+      { word: '月曜日', translation: 'Monday', phonetic: 'getsuyoubi' },
+      { word: '火曜日', translation: 'Tuesday', phonetic: 'kayoubi' },
+      { word: '水曜日', translation: 'Wednesday', phonetic: 'suiyoubi' },
+      { word: '木曜日', translation: 'Thursday', phonetic: 'mokuyoubi' },
+      { word: '金曜日', translation: 'Friday', phonetic: "kin'youbi" },
+      { word: '土曜日', translation: 'Saturday', phonetic: 'doyoubi' },
+      { word: '日曜日', translation: 'Sunday', phonetic: 'nichiyoubi' },
+    ],
+    phrases: [
+      { phrase: '今日は金曜日です。', translation: 'Today is Friday.', phonetic: 'kyou wa kin\'youbi desu.' },
+      { phrase: '今日は何曜日ですか？', translation: 'What day is today?', phonetic: 'kyou wa nan\'youbi desu ka?' },
+    ],
+    activities: [
+      {
+        id: 'ja-u2-l3-a1',
+        type: 'multiple_choice',
+        question: 'What day is "金曜日" (kin\'youbi)?',
+        options: ['Thursday', 'Friday', 'Saturday', 'Sunday'],
+        answer: 'Friday',
+      },
+      {
+        id: 'ja-u2-l3-a2',
+        type: 'translate',
+        question: 'Translate: "Sunday" in Japanese (romaji)',
+        answer: 'nichiyoubi',
+      },
+    ],
+  },
+
+  // ─── PORTUGUESE · Unit 2 · Lesson 1 ──────────────────────────────────────
+  {
+    id: 'pt-u2-l1',
+    unitId: 'pt-unit-2',
+    order: 1,
+    title: 'Números 1–10',
+    description: 'Count from one to ten in Portuguese.',
+    xpReward: 10,
+    goal: 'Count from 1 to 10 and use numbers in simple Portuguese sentences.',
+    aiTeacherPrompt:
+      'You are a cheerful Portuguese teacher. Teach um/uma through dez with rhythm. Note that one (um/uma) changes based on gender. Count objects together and practice with "Quantos há?" (How many are there?)',
+    vocabulary: [
+      { word: 'um / uma', translation: 'one', phonetic: 'oom / OO-mah' },
+      { word: 'dois / duas', translation: 'two', phonetic: 'doysh / DOO-ahsh' },
+      { word: 'três', translation: 'three', phonetic: 'tresh' },
+      { word: 'quatro', translation: 'four', phonetic: 'KWAH-troo' },
+      { word: 'cinco', translation: 'five', phonetic: 'SEEN-koo' },
+      { word: 'seis', translation: 'six', phonetic: 'saysh' },
+      { word: 'sete', translation: 'seven', phonetic: 'SEH-cheh' },
+      { word: 'oito', translation: 'eight', phonetic: 'OY-too' },
+      { word: 'nove', translation: 'nine', phonetic: 'NOH-veh' },
+      { word: 'dez', translation: 'ten', phonetic: 'desh' },
+    ],
+    phrases: [
+      { phrase: 'Tenho três gatos.', translation: 'I have three cats.' },
+      { phrase: 'Quantos há?', translation: 'How many are there?' },
+    ],
+    activities: [
+      {
+        id: 'pt-u2-l1-a1',
+        type: 'multiple_choice',
+        question: 'What is "cinco" in English?',
+        options: ['three', 'four', 'five', 'six'],
+        answer: 'five',
+      },
+      {
+        id: 'pt-u2-l1-a2',
+        type: 'translate',
+        question: 'Translate: "eight" in Portuguese',
+        answer: 'oito',
+      },
+    ],
+  },
+
+  // ─── PORTUGUESE · Unit 2 · Lesson 2 ──────────────────────────────────────
+  {
+    id: 'pt-u2-l2',
+    unitId: 'pt-unit-2',
+    order: 2,
+    title: 'Cores',
+    description: 'Learn color words in Portuguese.',
+    xpReward: 15,
+    goal: 'Name common colors and describe objects using colors in Portuguese.',
+    aiTeacherPrompt:
+      'You are a vibrant Portuguese teacher. Teach colors: vermelho, azul, verde, amarelo, branco, preto. Note that adjectives agree in gender and number. Ask the student to describe objects around them using colors.',
+    vocabulary: [
+      { word: 'vermelho / vermelha', translation: 'red' },
+      { word: 'azul', translation: 'blue' },
+      { word: 'verde', translation: 'green' },
+      { word: 'amarelo / amarela', translation: 'yellow' },
+      { word: 'branco / branca', translation: 'white' },
+      { word: 'preto / preta', translation: 'black' },
+      { word: 'laranja', translation: 'orange' },
+    ],
+    phrases: [
+      { phrase: 'O céu é azul.', translation: 'The sky is blue.' },
+      { phrase: 'Meu carro é vermelho.', translation: 'My car is red.' },
+    ],
+    activities: [
+      {
+        id: 'pt-u2-l2-a1',
+        type: 'multiple_choice',
+        question: 'What color is "amarelo"?',
+        options: ['red', 'green', 'yellow', 'blue'],
+        answer: 'yellow',
+      },
+      {
+        id: 'pt-u2-l2-a2',
+        type: 'translate',
+        question: 'Translate: "black" in Portuguese',
+        answer: 'preto',
+      },
+    ],
+  },
+
+  // ─── PORTUGUESE · Unit 2 · Lesson 3 ──────────────────────────────────────
+  {
+    id: 'pt-u2-l3',
+    unitId: 'pt-unit-2',
+    order: 3,
+    title: 'Dias da Semana',
+    description: 'Learn the days of the week in Portuguese.',
+    xpReward: 15,
+    goal: 'Name all seven days of the week and say what day it is.',
+    aiTeacherPrompt:
+      'You are a warm Portuguese teacher. Teach the days of the week from segunda-feira to domingo. Explain that Brazilian Portuguese often drops "feira" in casual speech. Practice with "Que dia é hoje?" (What day is today?)',
+    vocabulary: [
+      { word: 'segunda-feira', translation: 'Monday', phonetic: 'SEH-goon-dah FAY-rah' },
+      { word: 'terça-feira', translation: 'Tuesday', phonetic: 'TER-sah FAY-rah' },
+      { word: 'quarta-feira', translation: 'Wednesday', phonetic: 'KWAR-tah FAY-rah' },
+      { word: 'quinta-feira', translation: 'Thursday', phonetic: 'KEEN-tah FAY-rah' },
+      { word: 'sexta-feira', translation: 'Friday', phonetic: 'SEHS-tah FAY-rah' },
+      { word: 'sábado', translation: 'Saturday', phonetic: 'SAH-bah-doo' },
+      { word: 'domingo', translation: 'Sunday', phonetic: 'doo-MEEN-goo' },
+    ],
+    phrases: [
+      { phrase: 'Hoje é sexta-feira.', translation: 'Today is Friday.' },
+      { phrase: 'Que dia é hoje?', translation: 'What day is today?' },
+    ],
+    activities: [
+      {
+        id: 'pt-u2-l3-a1',
+        type: 'multiple_choice',
+        question: 'What day is "sexta-feira"?',
+        options: ['Thursday', 'Friday', 'Saturday', 'Sunday'],
+        answer: 'Friday',
+      },
+      {
+        id: 'pt-u2-l3-a2',
+        type: 'translate',
+        question: 'Translate: "Sunday" in Portuguese',
+        answer: 'domingo',
+      },
+    ],
+  },
 ];
 
 export const getLessonsByUnit = (unitId: string) =>

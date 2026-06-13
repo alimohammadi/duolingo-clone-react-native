@@ -19,6 +19,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { usePostHog } from "posthog-react-native";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -27,6 +28,7 @@ export default function SignIn() {
   const { signIn, fetchStatus } = useSignIn();
   const { startSSOFlow: startGoogleSSO } = useSSO();
   const { startSSOFlow: startAppleSSO } = useSSO();
+  const posthog = usePostHog();
 
   const [email, setEmail] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -43,9 +45,11 @@ export default function SignIn() {
         Alert.alert("Error", error.longMessage ?? error.message ?? "Could not send code");
         return;
       }
+      posthog.capture("sign_in_initiated");
       setShowModal(true);
     } catch (err: any) {
       const msg = err?.errors?.[0]?.longMessage ?? err?.errors?.[0]?.message ?? "Something went wrong";
+      posthog.captureException(new Error(msg), { screen: "SignIn" });
       Alert.alert("Sign In Failed", msg);
     } finally {
       setIsLoading(false);
@@ -59,6 +63,7 @@ export default function SignIn() {
 
     if (signIn.status === "complete") {
       await signIn.finalize();
+      posthog.capture("signed_in");
       setShowModal(false);
       router.replace("/");
     }
@@ -76,10 +81,12 @@ export default function SignIn() {
       const { createdSessionId, setActive } = await startGoogleSSO({ strategy: "oauth_google", redirectUrl });
       if (createdSessionId && setActive) {
         await setActive({ session: createdSessionId });
+        posthog.capture("sign_in_via_google");
         router.replace("/");
       }
     } catch (err: any) {
       const msg = err?.errors?.[0]?.longMessage ?? err?.errors?.[0]?.message ?? "Google sign-in failed";
+      posthog.captureException(new Error(msg), { screen: "SignIn", method: "google" });
       Alert.alert("Error", msg);
     }
   };
@@ -90,10 +97,12 @@ export default function SignIn() {
       const { createdSessionId, setActive } = await startAppleSSO({ strategy: "oauth_apple", redirectUrl });
       if (createdSessionId && setActive) {
         await setActive({ session: createdSessionId });
+        posthog.capture("sign_in_via_apple");
         router.replace("/");
       }
     } catch (err: any) {
       const msg = err?.errors?.[0]?.longMessage ?? err?.errors?.[0]?.message ?? "Apple sign-in failed";
+      posthog.captureException(new Error(msg), { screen: "SignIn", method: "apple" });
       Alert.alert("Error", msg);
     }
   };

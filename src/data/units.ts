@@ -73,6 +73,39 @@ export const units: Unit[] = [
     color: '#00CD9C',
     lessonIds: ['pt-u1-l1', 'pt-u1-l2'],
   },
+
+  // German unit 2
+  {
+    id: 'de-unit-2',
+    languageCode: 'de',
+    order: 2,
+    title: 'Alltag',
+    description: 'Numbers, colors, and everyday essentials in German.',
+    color: '#FF9600',
+    lessonIds: ['de-u2-l1', 'de-u2-l2', 'de-u2-l3'],
+  },
+
+  // Japanese unit 2
+  {
+    id: 'ja-unit-2',
+    languageCode: 'ja',
+    order: 2,
+    title: '数字と色',
+    description: 'Count numbers and learn colors in Japanese.',
+    color: '#1CB0F6',
+    lessonIds: ['ja-u2-l1', 'ja-u2-l2', 'ja-u2-l3'],
+  },
+
+  // Portuguese unit 2
+  {
+    id: 'pt-unit-2',
+    languageCode: 'pt',
+    order: 2,
+    title: 'Essenciais',
+    description: 'Numbers, colors, and daily expressions in Portuguese.',
+    color: '#FF4B4B',
+    lessonIds: ['pt-u2-l1', 'pt-u2-l2', 'pt-u2-l3'],
+  },
 ];
 
 export const getUnitsByLanguage = (languageCode: string) =>

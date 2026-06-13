@@ -18,6 +18,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { usePostHog } from "posthog-react-native";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -26,6 +27,7 @@ export default function SignUp() {
   const { signUp, fetchStatus } = useSignUp();
   const { startSSOFlow: startGoogleSSO } = useSSO();
   const { startSSOFlow: startAppleSSO } = useSSO();
+  const posthog = usePostHog();
 
   const [email, setEmail] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -45,12 +47,14 @@ export default function SignUp() {
         );
         return;
       }
+      posthog.capture("sign_up_initiated");
       setShowModal(true);
     } catch (err: any) {
       const msg =
         err?.errors?.[0]?.longMessage ??
         err?.errors?.[0]?.message ??
         "Something went wrong";
+      posthog.captureException(new Error(msg), { screen: "SignUp" });
       Alert.alert("Sign Up Failed", msg);
     } finally {
       setIsLoading(false);
@@ -64,7 +68,12 @@ export default function SignUp() {
       throw new Error(error.longMessage ?? error.message ?? "Invalid code");
 
     if (signUp.status === "complete") {
+      const userId = signUp.createdUserId;
       await signUp.finalize();
+      posthog.identify(userId ?? "anonymous", {
+        $set_once: { sign_up_date: new Date().toISOString() },
+      });
+      posthog.capture("sign_up_completed");
       setShowModal(false);
       router.replace("/");
     }
@@ -89,6 +98,7 @@ export default function SignUp() {
       });
       if (createdSessionId && setActive) {
         await setActive({ session: createdSessionId });
+        posthog.capture("sign_up_via_google");
         router.replace("/");
       }
     } catch (err: any) {
@@ -96,6 +106,7 @@ export default function SignUp() {
         err?.errors?.[0]?.longMessage ??
         err?.errors?.[0]?.message ??
         "Google sign-up failed";
+      posthog.captureException(new Error(msg), { screen: "SignUp", method: "google" });
       Alert.alert("Error", msg);
     }
   };
@@ -109,6 +120,7 @@ export default function SignUp() {
       });
       if (createdSessionId && setActive) {
         await setActive({ session: createdSessionId });
+        posthog.capture("sign_up_via_apple");
         router.replace("/");
       }
     } catch (err: any) {
@@ -116,6 +128,7 @@ export default function SignUp() {
         err?.errors?.[0]?.longMessage ??
         err?.errors?.[0]?.message ??
         "Apple sign-up failed";
+      posthog.captureException(new Error(msg), { screen: "SignUp", method: "apple" });
       Alert.alert("Error", msg);
     }
   };

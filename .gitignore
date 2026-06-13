@@ -45,3 +45,4 @@ example
 # Claude Code tooling
 .claude/
 skills-lock.json
+.env

@@ -3,9 +3,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stack, useRouter } from 'expo-router';
 import { images } from '@/constants/images';
+import { usePostHog } from 'posthog-react-native';
 
 export default function Onboarding() {
   const router = useRouter();
+  const posthog = usePostHog();
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -50,7 +52,10 @@ export default function Onboarding() {
       <View className="px-6 pb-8">
         <TouchableOpacity
           className="bg-lingua-purple rounded-[20px] py-[18px] items-center justify-center relative"
-          onPress={() => router.push('/(auth)/sign-up')}
+          onPress={() => {
+            posthog.capture('get_started_tapped');
+            router.push('/(auth)/sign-up');
+          }}
           activeOpacity={0.85}
         >
           <Text className="font-poppins-semibold text-[18px] text-white">Get Started</Text>

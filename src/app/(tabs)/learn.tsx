@@ -5,12 +5,12 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
-  Alert,
   useWindowDimensions,
   StyleSheet,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { useLanguageStore } from '@/store/languageStore';
 import { useLessonProgressStore } from '@/store/lessonProgressStore';
 import { getUnitsByLanguage } from '@/data/units';
@@ -196,10 +196,7 @@ export default function LearnScreen() {
   }, [units, completedLessons]);
 
   function handleLessonPress(lesson: Lesson) {
-    Alert.alert(lesson.title, `${lesson.description}\n\n🎯 Goal: ${lesson.goal}\n\n⭐ ${lesson.xpReward} XP`, [
-      { text: 'Start Lesson', style: 'default' },
-      { text: 'Cancel', style: 'cancel' },
-    ]);
+    router.push(`/lesson/${lesson.id}`);
   }
 
   if (!selectedLanguage) {

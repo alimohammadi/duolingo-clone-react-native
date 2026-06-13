@@ -76,6 +76,7 @@ function RootStack() {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="lesson/[id]" options={{ headerShown: false }} />
     </Stack>
   );
 }
